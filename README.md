@@ -201,6 +201,11 @@ The first argument (child) is any renderable React child, such as an element, st
 
 - have any code wrapped so it can be inserted into the DOM anywhere you choose
 
+> NOTE:
+> My portal is different from the one below. I am using functional components while this tutorial is using class components.
+>
+> I used this [LogRocket article](https://blog.logrocket.com/build-modal-with-react-portals/) to write my ReactPortal.
+
 _src/Portal.js_
 
 ```javascript
