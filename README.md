@@ -191,6 +191,78 @@ export default App;
 
 ## Creating A Reusable Portal
 
+What is a portal?
+
+Portals provide a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
+
+`ReactDOM.createPortal(child, container)`
+
+The first argument (child) is any renderable React child, such as an element, string, or fragment. The second argument (container) is a DOM element.
+
+- have any code wrapped so it can be inserted into the DOM anywhere you choose
+
+_src/Portal.js_
+
+```javascript
+import { Component } from 'react';
+import ReactDOM from 'react-dom';
+
+const portalRoot = document.getElementById('portal');
+
+export default class Portal extends Component {
+  constructor() {
+    super();
+    this.el = document.createElement('div');
+  }
+
+  componentDidMount = () => {
+    portalRoot.appendChild(this.el);
+  };
+
+  componentWillUnmount = () => {
+    portalRoot.removeChild(this.el);
+  };
+
+  render() {
+    const { children } = this.props;
+    return ReactDOM.createPortal(children, this.el);
+  }
+}
+```
+
+_src/App.js_
+
+```javascript
+import React, { Component, Fragment } from 'react';
+import logo from './logo.svg';
+import './App.css';
+import Toggle from './ToggleRPC';
+import Portal from './Portal';
+
+class App extends Component {
+  render() {
+    return (
+      <div className='App'>
+        <header className='App-header'>
+          <img src={logo} className='App-logo' alt='logo' />
+          <h1 className='App-title'>Welcome to React</h1>
+        </header>
+        <Toggle>
+          {({ on, toggle }) => (
+            <Fragment>
+              <button onClick={toggle}>Login</button>
+              <Portal>{on && <h1>Hi, I;m in a portal</h1>}</Portal>
+            </Fragment>
+          )}
+        </Toggle>
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
 [toc](#toc)
 
 ## Creating A Reuseable Modal
