@@ -1,14 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-export default function BasicToggleButton({ render }) {
+export default function BasicToggle({ children }) {
   const [isToggled, setToggled] = useState(false);
   const onToggle = () => setToggled(!isToggled);
-  return (
-    <div>
-      {render({
-        isToggled,
-        onToggle,
-      })}
-    </div>
-  );
+  return children({
+    isToggled,
+    onToggle,
+  });
 }

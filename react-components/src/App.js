@@ -7,15 +7,14 @@ function App() {
   return (
     <div className='App'>
       <div className='toggle'>
-        <BasicToggle
-          render={({ isToggled, onToggle }) => (
+        <BasicToggle>
+          {({ isToggled, onToggle }) => (
             <div>
               {isToggled && <p>Show me</p>}
-
               <button onClick={onToggle}>Show / Hide</button>
             </div>
           )}
-        />
+        </BasicToggle>
       </div>
     </div>
   );

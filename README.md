@@ -77,6 +77,8 @@ export default function BasicToggleButton({ render }) {
 }
 ```
 
+The proper named `render` can be named anything you would like
+
 _src/App.js_
 
 ```javascript
@@ -109,6 +111,49 @@ export default App;
 [toc](#toc)
 
 ## Children Render Props
+
+_src/components/toggle/BasicToggle.jsx_
+
+```javascript
+import { useState } from 'react';
+
+export default function BasicToggle({ children }) {
+  const [isToggled, setToggled] = useState(false);
+  const onToggle = () => setToggled(!isToggled);
+  return children({
+    isToggled,
+    onToggle,
+  });
+}
+```
+
+_src/App.js_
+
+```javascript
+import './App.css';
+
+// components
+import BasicToggle from './components/toggle/BasicToggle';
+
+function App() {
+  return (
+    <div className='App'>
+      <div className='toggle'>
+        <BasicToggle>
+          {({ isToggled, onToggle }) => (
+            <div>
+              {isToggled && <p>Show me</p>}
+              <button onClick={onToggle}>Show / Hide</button>
+            </div>
+          )}
+        </BasicToggle>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+```
 
 [toc](#toc)
 
