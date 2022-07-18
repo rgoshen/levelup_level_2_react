@@ -56,6 +56,56 @@ export default function BasicToggleButton(props) {
 
 ## Understanding Render Props
 
+Render Prop is just passing in a property to the component to render
+
+_src/components/toggle/BasicToggle.jsx_
+
+```javascript
+import React, { useState } from 'react';
+
+export default function BasicToggleButton({ render }) {
+  const [isToggled, setToggled] = useState(false);
+  const onToggle = () => setToggled(!isToggled);
+  return (
+    <div>
+      {render({
+        isToggled,
+        onToggle,
+      })}
+    </div>
+  );
+}
+```
+
+_src/App.js_
+
+```javascript
+import './App.css';
+
+// components
+import BasicToggle from './components/toggle/BasicToggle';
+
+function App() {
+  return (
+    <div className='App'>
+      <div className='toggle'>
+        <BasicToggle
+          render={({ isToggled, onToggle }) => (
+            <div>
+              {isToggled && <p>Show me</p>}
+
+              <button onClick={onToggle}>Show / Hide</button>
+            </div>
+          )}
+        />
+      </div>
+    </div>
+  );
+}
+
+export default App;
+```
+
 [toc](#toc)
 
 ## Children Render Props
