@@ -159,6 +159,34 @@ export default App;
 
 ## Fragments in React
 
+_src/App.js_
+
+```javascript
+import './App.css';
+
+// components
+import BasicToggle from './components/toggle/BasicToggle';
+
+function App() {
+  return (
+    <div className='App'>
+      <div className='toggle'>
+        <BasicToggle>
+          {({ isToggled, onToggle }) => (
+            <>
+              {isToggled && <p>Show me</p>}
+              <button onClick={onToggle}>Show / Hide</button>
+            </>
+          )}
+        </BasicToggle>
+      </div>
+    </div>
+  );
+}
+
+export default App;
+```
+
 [toc](#toc)
 
 ## Creating A Reusable Portal
