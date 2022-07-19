@@ -1,27 +1,22 @@
+import React, { Component } from 'react';
+import logo from './logo.svg';
 import './App.css';
+import Toggle from './Toggle';
 
-// components
-import BasicToggle from './components/toggle/BasicToggle';
-import ReactPortal from './components/portal/ReactPortal';
-
-function App() {
-  return (
-    <div className='App'>
-      <div className='toggle'>
-        <BasicToggle>
-          {({ isToggled, onToggle }) => (
-            <>
-              {isToggled && <p>Show me</p>}
-              <button onClick={onToggle}>Show / Hide</button>
-              {isToggled && (
-                <ReactPortal>Hello, I am in the Portal</ReactPortal>
-              )}
-            </>
-          )}
-        </BasicToggle>
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h1 className="App-title">Welcome to React</h1>
+        </header>
+        <Toggle>
+          <h1>Hello</h1>
+        </Toggle>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
